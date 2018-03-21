@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        button{
+        font-size: 15px;
+        height: 50px;
+        width: 150px;
+        margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<img src="https://pic.qiushibaike.com/system/pictures/11963/119636300/medium/app119636300.jpg">
+<button type="button" onclick="logTest()">log测试</button><br />
+<button type="button" onclick="setMemberId()">设置MemberId数据</button><br />
+<button type="button" onclick="setEvent()">设置Event数据</button><br />
+<button type="button" onclick="setPageStart()">设置PageStart数据</button><br />
+<button type="button" onclick="setPageEnd()">设置PageEnd数据</button><br />
+<button type="button" onclick="setTrail()">设置trail1数据</button><br />
+<button type="button" onclick="setTrail2()">设置trail2数据</button><br />
+<button type="button" onclick="setJson()">设置json数据</button>
+<button type="button" onclick="errorTest()">设置异常数据</button>
+<button type="button" onclick="angularTest()">angular异常数据</button>
+<button type="button" onclick="angularTest2()">angular异常数据2</button>
+
+<script type="text/javascript">
+		function logTest(){
+			bonreeJsBridge.logInfo("logTest");
+		}
+
+		function setMemberId(){
+			bonreeJsBridge.onMemberId("memberId");
+		}
+		function setEvent(){
+			bonreeJsBridge.onEvent("1","1");
+		}
+		function setPageStart(){
+			bonreeJsBridge.onPageStart("2","Page");
+		}
+		function setPageEnd(){
+			bonreeJsBridge.onPageEnd("2","Page");
+		}
+		function setTrail(){
+			bonreeJsBridge.addCrashTrace(["Demo2","Trail1"]);
+		}
+		function setTrail2(){
+			bonreeJsBridge.addCrashTrace(["Demo2","Trail2"]);
+		}
+		function setJson(){
+			var json = '{ "js1": "jsvalue1", "js2": "jsvalue1", "js3":"jsvalue3" }';
+			bonreeJsBridge.setUserInfo(json);
+		}
+		function errorTest(){
+			console.log(adbMMM);
+		}
+		function angularTest(){
+			var causedBy = "ReferenceError :aaa is not defined";
+			var url = "http://127.0.0.1:8020/AngularJS/01/debug.html";
+			var lineNumber = "undefined";
+			var columnNumber = "undefined";
+			var errordump = "ReferenceError: aaa is not defined at Scope.$scope.myFun (http://127.0.0.1:8020/AngularJS/01/debug.html:30:18) at $parseFunctionCal";
+			var href = "undefined";
+			var crashStartTimeUs = "1502170485759";
+			var errUserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 ";
+			try{
+				bonreeJsBridge.javascriptError(causedBy,url,lineNumber,columnNumber,errordump,href,crashStartTimeUs,errUserAgent);
+			}catch(exception){
+
+			}
+		}
+
+		function angularTest2(){
+			var name = "ReferenceError";
+			var message = "aaa is not defined";
+			var url = "http://127.0.0.1:8020/AngularJS/01/debug.html";
+			var errordump = "ReferenceError: aaa is not defined at Scope.$scope.myFun (http://127.0.0.1:8020/AngularJS/01/debug.html:30:18) at $parseFunctionCal";
+			var errUserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 ";
+			try{
+				bonreeJsBridge.angularError([name,message,url,errUserAgent,errordump]);
+			}catch(exception){
+
+			}
+		}
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+[info] 2018/03/20 10:46:04 BRSDK v2.2.1.6 integration success.
